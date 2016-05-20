@@ -4,18 +4,24 @@
     {
         public char Name;
         public int Price;
-        public int DiscountValue;
-        public int DiscountThreshold;
+        private readonly int _discountValue;
+        private readonly int _discountThreshold;
 
         public Product(
             char name, int price, int discountValue, int discountThreshold)
         {
             this.Name = name;
             this.Price = price;
-            this.DiscountValue = discountValue;
-            this.DiscountThreshold = discountThreshold;
+            this._discountValue = discountValue;
+            this._discountThreshold = discountThreshold;
         }
 
-        public bool HasDiscount() => DiscountValue != 0;
+        public int Discount(int itemCount)
+        {
+            if (_discountValue != 0 && itemCount >= _discountThreshold)
+                return (itemCount / _discountThreshold) * _discountValue;
+
+            return 0;
+        }
     }
 }
