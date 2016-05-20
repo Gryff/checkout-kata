@@ -7,7 +7,8 @@
         public int DiscountValue;
         public int DiscountThreshold;
 
-        public Product(char name, int price, int discountValue, int discountThreshold)
+        public Product(
+            char name, int price, int discountValue, int discountThreshold)
         {
             this.Name = name;
             this.Price = price;
