@@ -21,6 +21,7 @@ namespace CheckoutKata
             var result = 0;
 
             if (products.Count(p => p == 'A') == 3) result += discountForA;
+            if (products.Count(p => p == 'A') == 6) result += 2 * discountForA;
             if (products.Count(p => p == 'B') == 2) result += discountForB;
 
             return result;
