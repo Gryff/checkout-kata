@@ -13,10 +13,13 @@ namespace CheckoutKata
             return products.Sum(_catalogue.Price) - discount;
         }
 
-        private static int CalculateDiscount(string products)
+        private int CalculateDiscount(string products)
         {
-            if (products == "AAA") return 30;
-            if (products == "BB") return 15;
+            var discountForA = 30;
+            var discountForB = 15;
+
+            if (products == "AAA") return discountForA;
+            if (products == "BB") return discountForB;
 
             return 0;
         }
