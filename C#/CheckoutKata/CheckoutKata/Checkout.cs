@@ -18,12 +18,13 @@ namespace CheckoutKata
             var discountForA = 30;
             var discountForB = 15;
             var discountThresholdForA = 3;
+            var discountThresholdForB = 2;
 
             var result = 0;
 
             if (products.Count(p => p == 'A') == discountThresholdForA) result += discountForA;
             if (products.Count(p => p == 'A') == 2 * discountThresholdForA) result += 2 * discountForA;
-            if (products.Count(p => p == 'B') == 2) result += discountForB;
+            if (products.Count(p => p == 'B') == discountThresholdForB) result += discountForB;
 
             return result;
         }
