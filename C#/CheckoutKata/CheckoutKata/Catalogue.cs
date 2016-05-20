@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace CheckoutKata
@@ -13,6 +14,13 @@ namespace CheckoutKata
                 ['D'] = 15
             };
 
+        private readonly Dictionary<char, Tuple<int, int>> _discountLookup = 
+            new Dictionary<char, Tuple<int, int>>
+            {
+                ['A'] = new Tuple<int, int>(3, 30),
+                ['B'] = new Tuple<int, int>(2, 15)
+            };
+
         public int Price(char product)
         {
             return _catalogue[product];
@@ -20,8 +28,8 @@ namespace CheckoutKata
 
         public int CalculateProductDiscount(char product, int itemCount, Checkout checkout)
         {
-            var discount = checkout.Catalogue.ProductDiscount(product, checkout);
-            var discountThreshold = checkout.Catalogue.ProductDiscountThreshold(product, checkout);
+            var discount = checkout.Catalogue.ProductDiscount(product);
+            var discountThreshold = checkout.Catalogue.ProductDiscountThreshold(product);
 
             if (itemCount >= discountThreshold)
                 return (itemCount / discountThreshold) * discount;
@@ -29,14 +37,14 @@ namespace CheckoutKata
             return 0;
         }
 
-        private int ProductDiscount(char product, Checkout checkout)
+        private int ProductDiscount(char product)
         {
-            return checkout.DiscountLookup[product].Item2;
+            return _discountLookup[product].Item2;
         }
 
-        private int ProductDiscountThreshold(char product, Checkout checkout)
+        private int ProductDiscountThreshold(char product)
         {
-            return checkout.DiscountLookup[product].Item1;
+            return _discountLookup[product].Item1;
         }
     }
 }
