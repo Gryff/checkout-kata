@@ -32,12 +32,10 @@ namespace CheckoutKata
             var discountForA = 30;
             var discountThresholdForA = 3;
 
-            var result = 0;
-
             if (itemCount >= discountThresholdForA)
-                result += (itemCount / discountThresholdForA) * discountForA;
+                return (itemCount / discountThresholdForA) * discountForA;
 
-            return result;
+            return 0;
         }
     }
 }
