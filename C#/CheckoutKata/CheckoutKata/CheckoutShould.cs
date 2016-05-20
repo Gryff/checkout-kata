@@ -42,5 +42,13 @@ namespace CheckoutKata
 
             Assert.That(price, Is.EqualTo(expected));
         }
+
+        [TestCase("AAA", 120)]
+        public void PriceDiscountsOnMultipleProducts(string products, int expected)
+        {
+            var price = _checkout.CalculatePrice(products);
+
+            Assert.That(price, Is.EqualTo(expected));
+        }
     }
 }
