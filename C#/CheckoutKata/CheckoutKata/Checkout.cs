@@ -16,6 +16,7 @@ namespace CheckoutKata
         private static int CalculateDiscount(string products)
         {
             if (products == "AAA") return 30;
+            if (products == "BB") return 15;
 
             return 0;
         }
