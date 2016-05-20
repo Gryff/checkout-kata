@@ -21,10 +21,7 @@ namespace CheckoutKata
                 ['B'] = new Tuple<int, int>(2, 15)
             };
 
-        public int Price(char product)
-        {
-            return _catalogue[product];
-        }
+        public int Price(char product) => _catalogue[product];
 
         public int CalculateProductDiscount(char product, int itemCount)
         {
@@ -37,14 +34,10 @@ namespace CheckoutKata
             return 0;
         }
 
-        private int ProductDiscount(char product)
-        {
-            return _discountLookup[product].Item2;
-        }
+        private int ProductDiscount(char product) =>
+            _discountLookup[product].Item2;
 
-        private int ProductDiscountThreshold(char product)
-        {
-            return _discountLookup[product].Item1;
-        }
+        private int ProductDiscountThreshold(char product) =>
+            _discountLookup[product].Item1;
     }
 }
