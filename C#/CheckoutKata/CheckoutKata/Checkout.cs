@@ -17,11 +17,10 @@ namespace CheckoutKata
         {
             var discountForB = 15;
             var discountThresholdForB = 2;
-            int countForA = products.Count(p => p == 'A');
 
             var result = 0;
 
-            result += CalculateProductDiscount(countForA);
+            result += CalculateProductDiscount(products.Count(p => p == 'A'));
 
             if (products.Count(p => p == 'B') == discountThresholdForB) result += discountForB;
 
