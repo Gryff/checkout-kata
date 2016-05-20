@@ -8,9 +8,16 @@ namespace CheckoutKata
 
         public int CalculatePrice(string products)
         {
-            if (products == "AAA") return 120;
+            int discount = CalculateDiscount(products);
 
-            return products.Sum(_catalogue.Price);
+            return products.Sum(_catalogue.Price) - discount;
+        }
+
+        private static int CalculateDiscount(string products)
+        {
+            if (products == "AAA") return 30;
+
+            return 0;
         }
     }
 }
