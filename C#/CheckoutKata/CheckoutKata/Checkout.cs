@@ -17,24 +17,34 @@ namespace CheckoutKata
         {
             var discountForB = 15;
             var discountThresholdForB = 2;
-
             var result = 0;
 
-            result += CalculateProductDiscount(products.Count(p => p == 'A'));
+            result += CalculateProductDiscount('A', products.Count(p => p == 'A'));
 
             if (products.Count(p => p == 'B') == discountThresholdForB) result += discountForB;
 
             return result;
         }
 
-        private int CalculateProductDiscount(int itemCount)
+        private int CalculateProductDiscount(char product, int itemCount)
         {
-            var discountForA = 30;
-            var discountThresholdForA = 3;
+            if(product == 'A')
+            {
+                var discountForA = 30;
+                var discountThresholdForA = 3;
 
-            if (itemCount >= discountThresholdForA)
-                return (itemCount / discountThresholdForA) * discountForA;
+                if (itemCount >= discountThresholdForA)
+                    return (itemCount / discountThresholdForA) * discountForA;
+            }
 
+            if (product == 'B')
+            {
+                var discountForB = 15;
+                var discountThresholdForB = 2;
+
+                if (itemCount >= discountThresholdForB)
+                    return (itemCount / discountThresholdForB) * discountForB;
+            }
             return 0;
         }
     }
