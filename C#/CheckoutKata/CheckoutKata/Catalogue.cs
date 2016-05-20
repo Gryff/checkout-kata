@@ -5,7 +5,7 @@ namespace CheckoutKata
 {
     public class Catalogue
     {
-        private Dictionary<char, Product> _products = 
+        private readonly Dictionary<char, Product> _products = 
             new Dictionary<char, Product>
             {
                 ['A'] = new Product('A', 50, 30, 3),
@@ -30,7 +30,7 @@ namespace CheckoutKata
                 ['B'] = new Tuple<int, int>(2, 15)
             };
 
-        public int Price(char product) => _catalogue[product];
+        public int Price(char product) => _products[product].Price;
 
         public int CalculateProductDiscount(char product, int itemCount)
         {
@@ -44,9 +44,9 @@ namespace CheckoutKata
         }
 
         private int ProductDiscount(char product) =>
-            _discountLookup[product].Item2;
+            _products[product].DiscountValue;
 
         private int ProductDiscountThreshold(char product) =>
-            _discountLookup[product].Item1;
+            _products[product].DiscountThreshold;
     }
 }
