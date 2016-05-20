@@ -17,5 +17,16 @@ namespace CheckoutKata
         {
             return _catalogue[product];
         }
+
+        public int CalculateProductDiscount(char product, int itemCount, Checkout checkout)
+        {
+            var discount = checkout.ProductDiscount(product);
+            var discountThreshold = checkout.ProductDiscountThreshold(product);
+
+            if (itemCount >= discountThreshold)
+                return (itemCount / discountThreshold) * discount;
+
+            return 0;
+        }
     }
 }

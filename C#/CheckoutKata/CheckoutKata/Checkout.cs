@@ -25,29 +25,18 @@ namespace CheckoutKata
         {
             var result = 0;
 
-            result += CalculateProductDiscount('A', products.Count(p => p == 'A'));
-            result += CalculateProductDiscount('B', products.Count(p => p == 'B'));
+            result += _catalogue.CalculateProductDiscount('A', products.Count(p => p == 'A'), this);
+            result += _catalogue.CalculateProductDiscount('B', products.Count(p => p == 'B'), this);
             
             return result;
         }
 
-        private int CalculateProductDiscount(char product, int itemCount)
-        {
-            var discount = ProductDiscount(product);
-            var discountThreshold = ProductDiscountThreshold(product);
-
-            if (itemCount >= discountThreshold)
-                return (itemCount / discountThreshold) * discount;
-
-            return 0;
-        }
-
-        private int ProductDiscount(char product)
+        public int ProductDiscount(char product)
         {
             return _discountLookup[product].Item2;
         }
 
-        private int ProductDiscountThreshold(char product)
+        public int ProductDiscountThreshold(char product)
         {
             return _discountLookup[product].Item1;
         }
