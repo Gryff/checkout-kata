@@ -20,8 +20,8 @@ namespace CheckoutKata
 
             var result = 0;
 
-            if (products.Contains("AAA")) result+= discountForA;
-            if (products.Contains("BB")) result += discountForB;
+            if (products.Count(p => p == 'A') == 3) result += discountForA;
+            if (products.Count(p => p == 'B') == 2) result += discountForB;
 
             return result;
         }
