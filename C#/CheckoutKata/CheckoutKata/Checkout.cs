@@ -4,7 +4,8 @@ namespace CheckoutKata
 {
     public class Checkout
     {
-        private readonly Catalogue _catalogue = new Catalogue();
+        private readonly Catalogue _catalogue = 
+            new Catalogue(new ProductRepository());
 
         public int CalculatePrice(string products)
         {

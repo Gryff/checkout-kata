@@ -2,7 +2,12 @@ namespace CheckoutKata
 {
     public class Catalogue
     {
-        private readonly ProductRepository _products = new ProductRepository();
+        private readonly ProductRepository _products;
+
+        public Catalogue(ProductRepository productRepository)
+        {
+            this._products = productRepository;
+        }
 
         public int Price(char product) => _products.Find(product).Price;
 
