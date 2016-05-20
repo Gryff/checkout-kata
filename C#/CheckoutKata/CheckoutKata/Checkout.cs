@@ -1,10 +1,18 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CheckoutKata
 {
     public class Checkout
     {
         private readonly Catalogue _catalogue = new Catalogue();
+        private readonly Dictionary<char, Tuple<int, int>> _discountLookup = 
+            new Dictionary<char, Tuple<int, int>>
+            {
+                ['A'] = new Tuple<int, int>(3, 30),
+                ['B'] = new Tuple<int, int>(2, 15)
+            };
 
         public int CalculatePrice(string products)
         {
@@ -15,14 +23,11 @@ namespace CheckoutKata
 
         private int CalculateDiscount(string products)
         {
-            var discountForB = 15;
-            var discountThresholdForB = 2;
             var result = 0;
 
             result += CalculateProductDiscount('A', products.Count(p => p == 'A'));
-
-            if (products.Count(p => p == 'B') == discountThresholdForB) result += discountForB;
-
+            result += CalculateProductDiscount('B', products.Count(p => p == 'B'));
+            
             return result;
         }
 
