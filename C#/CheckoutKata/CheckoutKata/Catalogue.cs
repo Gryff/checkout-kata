@@ -5,6 +5,14 @@ namespace CheckoutKata
 {
     public class Catalogue
     {
+        private List<Product> _products = new List<Product>
+        {
+            new Product {Name = 'A', Price = 50, DiscountValue = 30, DiscountThreshold = 3},
+            new Product {Name = 'B', Price = 30, DiscountValue = 15, DiscountThreshold = 2},
+            new Product {Name = 'C', Price = 20},
+            new Product {Name = 'D', Price = 15}
+        };
+
         private readonly Dictionary<char, int> _catalogue =
             new Dictionary<char, int>
             {
