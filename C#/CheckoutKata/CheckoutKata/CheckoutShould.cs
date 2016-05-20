@@ -35,6 +35,7 @@ namespace CheckoutKata
         [TestCase("AB", 80)]
         [TestCase("ABC", 100)]
         [TestCase("ABCD", 115)]
+        [TestCase("ABCDACD", 200)]
         public void PriceCombinationsOfProducts(string products, int expected)
         {
             var price = _checkout.CalculatePrice(products);
