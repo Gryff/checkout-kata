@@ -22,8 +22,10 @@ namespace CheckoutKata
 
             var result = 0;
 
-            if (products.Count(p => p == 'A') == discountThresholdForA) result += discountForA;
-            if (products.Count(p => p == 'A') == 2 * discountThresholdForA) result += 2 * discountForA;
+            var countForA = products.Count(p => p == 'A');
+
+            if (countForA == discountThresholdForA) result += discountForA;
+            if (countForA == 2 * discountThresholdForA) result += 2 * discountForA;
             if (products.Count(p => p == 'B') == discountThresholdForB) result += discountForB;
 
             return result;
