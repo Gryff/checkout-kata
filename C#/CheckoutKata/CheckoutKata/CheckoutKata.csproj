@@ -48,6 +48,7 @@
     <Compile Include="Checkout.cs" />
     <Compile Include="CheckoutShould.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

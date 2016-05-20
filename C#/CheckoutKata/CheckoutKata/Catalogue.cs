@@ -1,23 +1,14 @@
-using System.Collections.Generic;
-
 namespace CheckoutKata
 {
     public class Catalogue
     {
-        private readonly Dictionary<char, Product> _products = 
-            new Dictionary<char, Product>
-            {
-                ['A'] = new Product('A', 50, 30, 3),
-                ['B'] = new Product('B', 30, 15, 2),
-                ['C'] = new Product('C', 20, 0, 0),
-                ['D'] = new Product('D', 15, 0, 0)
-            };
-
-        public int Price(char product) => _products[product].Price;
+        private readonly ProductRepository _products = new ProductRepository();
+        
+        public int Price(char product) => _products.Find(product).Price;
 
         public int Discount(char product, int itemCount)
         {
-            if (!_products[product].HasDiscount()) return 0;
+            if (!_products.Find(product).HasDiscount()) return 0;
 
             var discount = ProductDiscount(product);
             var discountThreshold = ProductDiscountThreshold(product);
@@ -29,9 +20,9 @@ namespace CheckoutKata
         }
 
         private int ProductDiscount(char product) =>
-            _products[product].DiscountValue;
+            _products.Find(product).DiscountValue;
 
         private int ProductDiscountThreshold(char product) =>
-            _products[product].DiscountThreshold;
+            _products.Find(product).DiscountThreshold;
     }
 }
