@@ -1,14 +1,14 @@
 ﻿namespace CheckoutKata
 {
-    class Product
+    public class Product
     {
         public char Name;
         public int Price;
-        public int DiscountValue;
-        public int DiscountThreshold;
+        public int? DiscountValue;
+        public int? DiscountThreshold;
 
         public Product(
-            char name, int price, int discountValue, int discountThreshold)
+            char name, int price, int? discountValue = null, int? discountThreshold = null)
         {
             this.Name = name;
             this.Price = price;

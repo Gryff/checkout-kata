@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
 namespace CheckoutKata
 {
@@ -17,12 +15,10 @@ namespace CheckoutKata
 
         private int CalculateDiscount(string products)
         {
-            var result = 0;
-
-            result += _catalogue.CalculateProductDiscount('A', products.Count(p => p == 'A'));
-            result += _catalogue.CalculateProductDiscount('B', products.Count(p => p == 'B'));
-            
-            return result;
+            return products
+                .Distinct()
+                .Sum(product => _catalogue.CalculateProductDiscount(
+                    product, products.Count(p => p == product)));
         }
     }
 }
