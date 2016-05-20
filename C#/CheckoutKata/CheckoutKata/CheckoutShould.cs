@@ -55,6 +55,9 @@ namespace CheckoutKata
         }
 
         [TestCase("AAAA", 170)]
+        [TestCase("BBB", 75)]
+        [TestCase("AAAABBB", 245)]
+        [TestCase("ABACABADDB", 295)]
         public void PriceDiscountsWhenProductNumberIsNotAMultiple(string products, int expected)
         {
             var price = _checkout.CalculatePrice(products);
