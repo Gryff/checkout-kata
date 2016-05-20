@@ -36,7 +36,7 @@ namespace CheckoutKata
             if(product == 'A')
             {
                 var discountForA = ProductDiscount('A');
-                var discountThresholdForA = 3;
+                var discountThresholdForA = ProductDiscountItemThreshold('A');
 
                 if (itemCount >= discountThresholdForA)
                     return (itemCount / discountThresholdForA) * discountForA;
@@ -56,6 +56,11 @@ namespace CheckoutKata
         private int ProductDiscount(char product)
         {
             return _discountLookup[product].Item2;
+        }
+
+        private int ProductDiscountItemThreshold(char product)
+        {
+            return _discountLookup[product].Item1;
         }
     }
 }
