@@ -26,10 +26,10 @@ namespace CheckoutKata
             return _catalogue[product];
         }
 
-        public int CalculateProductDiscount(char product, int itemCount, Checkout checkout)
+        public int CalculateProductDiscount(char product, int itemCount)
         {
-            var discount = checkout.Catalogue.ProductDiscount(product);
-            var discountThreshold = checkout.Catalogue.ProductDiscountThreshold(product);
+            var discount = ProductDiscount(product);
+            var discountThreshold = ProductDiscountThreshold(product);
 
             if (itemCount >= discountThreshold)
                 return (itemCount / discountThreshold) * discount;
