@@ -9,31 +9,29 @@ namespace CheckoutKata
             {
                 ['A'] = new Product('A', 50, 30, 3),
                 ['B'] = new Product('B', 30, 15, 2),
-                ['C'] = new Product('C', 20),
-                ['D'] = new Product('D', 15)
+                ['C'] = new Product('C', 20, 0, 0),
+                ['D'] = new Product('D', 15, 0, 0)
             };
 
         public int Price(char product) => _products[product].Price;
 
-        public int CalculateProductDiscount(char product, int itemCount)
+        public int Discount(char product, int itemCount)
         {
+            if (!_products[product].HasDiscount()) return 0;
+
             var discount = ProductDiscount(product);
+            var discountThreshold = ProductDiscountThreshold(product);
 
-            if (discount != null)
-            {
-                var discountThreshold = ProductDiscountThreshold(product).Value;
-
-                if (itemCount >= discountThreshold)
-                    return (itemCount / discountThreshold) * discount.Value;
-            }
+            if (itemCount >= discountThreshold)
+                return (itemCount/discountThreshold)*discount;
 
             return 0;
         }
 
-        private int? ProductDiscount(char product) =>
+        private int ProductDiscount(char product) =>
             _products[product].DiscountValue;
 
-        private int? ProductDiscountThreshold(char product) =>
+        private int ProductDiscountThreshold(char product) =>
             _products[product].DiscountThreshold;
     }
 }

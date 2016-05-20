@@ -17,7 +17,7 @@ namespace CheckoutKata
         {
             return products
                 .Distinct()
-                .Sum(product => _catalogue.CalculateProductDiscount(
+                .Sum(product => _catalogue.Discount(
                     product, products.Count(p => p == product)));
         }
     }
