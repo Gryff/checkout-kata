@@ -18,10 +18,12 @@ namespace CheckoutKata
             var discountForA = 30;
             var discountForB = 15;
 
-            if (products == "AAA") return discountForA;
-            if (products == "BB") return discountForB;
+            var result = 0;
 
-            return 0;
+            if (products.Contains("AAA")) result+= discountForA;
+            if (products.Contains("BB")) result += discountForB;
+
+            return result;
         }
     }
 }
