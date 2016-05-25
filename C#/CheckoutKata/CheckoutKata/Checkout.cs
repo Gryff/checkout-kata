@@ -9,17 +9,24 @@ namespace CheckoutKata
 
         public int CalculatePrice(string products)
         {
-            int discount = CalculateDiscount(products);
-
-            return products.Sum(_catalogue.Price) - discount;
+            return TotalBeforeDiscount(products) - Discount(products);
         }
 
-        private int CalculateDiscount(string products)
+        private int TotalBeforeDiscount(string products)
+        {
+            return products.Sum(_catalogue.Price);
+        }
+
+        private int Discount(string products)
         {
             return products
-                .Distinct()
-                .Sum(product => _catalogue.Discount(
-                    product, products.Count(p => p == product)));
+                .GroupBy(Identity)
+                .Sum(ProductDiscount);
         }
+
+        private char Identity(char p) => p;
+
+        private int ProductDiscount(IGrouping<char, char> group) => 
+            _catalogue.Discount(group.Key, group.Count());
     }
 }
